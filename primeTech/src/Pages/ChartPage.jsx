@@ -6,40 +6,56 @@ import axios from "axios";
 import { Box, Text } from "@chakra-ui/react";
 import "../Styles/Chart.css";
 const ChartPage = () => {
-  const dispatch = useDispatch();
-
-  const [role, setRole] = useState("");
-
   const [fullStack, setFullStack] = useState(0);
   const [product, setProduct] = useState(0);
   const [dataAnalyst, setDataAnalyst] = useState(0);
   const [ux, setUX] = useState(0);
   const [graphic, setGraphic] = useState(0);
   const [software, setSoftware] = useState(0);
-  //Fetching an API
+
+  const incrementSoftware = useCallback(() => {
+    setSoftware((val) => val + 1);
+  }, []);
+
+  const incrementFullStack = useCallback(() => {
+    setFullStack((val) => val + 1);
+  }, []);
+
+  const incrementDataAnalyst = useCallback(() => {
+    setDataAnalyst((val) => val + 1);
+  }, []);
+
+  const incrementGraphic = useCallback(() => {
+    setGraphic((val) => val + 1);
+  }, []);
+
+  const incrementUX = useCallback(() => {
+    setUX((val) => val + 1);
+  }, []);
+
   useEffect(() => {
     const chartData = async () => {
       try {
         let res = await axios(`https://fair-puce-tuna-yoke.cyclic.app/prime`);
         let store = res.data;
         console.log("store", store);
-        //logic Part
+        // logic Part
         store.length > 0 &&
           store.forEach((el) => {
             if (el.role === "Software Developer") {
-              setSoftware((val) => val + 1);
+              incrementSoftware();
             }
             if (el.role === "Full Stack Developer") {
-              setFullStack((val) => val + 1);
+              incrementFullStack();
             }
             if (el.role === "Data Analyst") {
-              setDataAnalyst((val) => val + 1);
+              incrementDataAnalyst();
             }
             if (el.role === "Graphic Designer") {
-              setGraphic((val) => val + 1);
+              incrementGraphic();
             }
             if (el.role === "UI/UX Developer") {
-              setUX((val) => val + 1);
+              incrementUX();
             }
           });
       } catch (err) {
@@ -47,7 +63,13 @@ const ChartPage = () => {
       }
     };
     chartData();
-  }, []);
+  }, [
+    incrementSoftware,
+    incrementFullStack,
+    incrementDataAnalyst,
+    incrementGraphic,
+    incrementUX,
+  ]);
 
   return (
     <div>
@@ -55,16 +77,12 @@ const ChartPage = () => {
         <br />
         <br />
         <Box>
-          <Text className="filterText"
-           
-          >
-            Filter According to role{" "}
-          </Text>
+          <Text className="filterText">Filter According to role </Text>
           <br />
           <br />
-          <Chart className='chart'
+          <Chart
+            className="chart"
             type="pie"
-         
             series={[fullStack, dataAnalyst, ux, software, graphic]}
             options={{
               labels: [
