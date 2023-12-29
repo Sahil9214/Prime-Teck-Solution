@@ -1,0 +1,51 @@
+/* .home {
+  background-image: url("https://www.thebrandwick.com/revslider/assets/02f6c-bg.jpg");
+  background-size: cover;
+  height: 100%;
+} */
+
+.homeDetail {
+  display: grid;
+  padding: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 80%;
+  margin: auto;
+}
+.btn {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  gap: 20px;
+}
+.btnButton {
+  background-color: rgb(81, 81, 241);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+.dataStyleById {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 1080px) and (min-width: 768px) {
+  .homeDetail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 767px) and (min-width: 320px) {
+  .homeDetail {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    width: 80%;
+    margin: auto;
+  }
+  .dataPage {
+    margin: auto;
+  }
+}
