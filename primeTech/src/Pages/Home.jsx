@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Box, Text, Button } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDataAction } from "../redux/action";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner,Stack } from "@chakra-ui/react";
 import "../Styles/Home.css";
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import DataPage from "../Components/DataPage";
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,30 @@ const Home = () => {
   }, [page]);
 
   return (
-    <div className='home'>
+    <div className="home">
       <div>
         {store?.loading ? (
-          <Spinner />
+          <div style={{ width: "50%", margin: "auto", marginTop: "100px" }}>
+            <Stack>
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+            </Stack>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+          </div>
         ) : store?.error ? (
           <p>Error fetching data</p>
         ) : (
@@ -31,7 +52,7 @@ const Home = () => {
           </div>
         )}
       </div>
-      
+
       <div className="btn">
         <Button
           backgroundColor={"#68D391"}
@@ -64,7 +85,6 @@ const Home = () => {
           Next
         </Button>
       </div>
-      
     </div>
   );
 };
