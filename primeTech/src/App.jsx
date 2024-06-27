@@ -10,6 +10,7 @@ function App() {
     <div className="app">
       <Navbar />
       <AllRouter />
+      <h1>Add comments her yipee</h1>
     </div>
   );
 }
